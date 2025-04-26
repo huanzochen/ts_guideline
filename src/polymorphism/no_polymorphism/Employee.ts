@@ -1,5 +1,5 @@
 export enum EmployeeType {
-  COMMISIONED = "commissioned",
+  COMMISSIONED = "commissioned",
   HOURLY = "hourly",
   SALARIED = "salaried",
 }
@@ -17,27 +17,20 @@ type HourlyOptions = {
   overtimeRate: number;
 };
 
-type EmployeeOptions = CommissionedOptions | HourlyOptions;
+export type EmployeeOptionsMap = {
+  [EmployeeType.COMMISSIONED]: CommissionedOptions;
+  [EmployeeType.HOURLY]: HourlyOptions;
+  [EmployeeType.SALARIED]: {};
+};
 
-export class Employee {
+export class Employee<T extends EmployeeType> {
   public name: string;
-  public type: string;
+  public type: T;
+  public options: EmployeeOptionsMap[T];
 
-  // EmployeeType.COMMISIONED
-  public baseSalary: number;
-  public commisionRate: number;
-  public salesNumber: number;
-
-  // EmployeeType.HOURLY
-  public hoursWorked: number;
-  public baseHourlyRate: number;
-  public overtimeHours: number;
-  public overtimeRate: number;
-
-  constructor(name: string, type: string, options?: EmployeeOptions) {
+  constructor(name: string, type: T, options: EmployeeOptionsMap[T]) {
     this.name = name;
     this.type = type;
-
-    Object.assign(this, options);
+    this.options = options;
   }
 }

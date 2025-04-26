@@ -1,4 +1,4 @@
-import { Employee, EmployeeType } from "./Employee";
+import { Employee, EmployeeType } from "./Employee.js";
 
 class InvalidEmployeeType extends Error {
   constructor(type: string) {
@@ -7,53 +7,35 @@ class InvalidEmployeeType extends Error {
   }
 }
 
-const calCommissionPay = (e: Employee) => {
-  // Null Check
-  if (
-    typeof e.baseSalary !== "number" ||
-    typeof e.commisionRate !== "number" ||
-    typeof e.salesNumber !== "number"
-  ) {
-    throw new Error("Invalid commission employee data");
-  }
+const calCommissionPay = (e: Employee<EmployeeType.COMMISSIONED>) => {
+  const { baseSalary, commisionRate, salesNumber } = e.options;
 
   // Calculate commission pay
-  const commissionPay = e.commisionRate * e.salesNumber;
-  return e.baseSalary + commissionPay;
+  const commissionPay = commisionRate * salesNumber;
+  return baseSalary + commissionPay;
 };
 
-const calHourPay = (e: Employee) => {
-  // Null Check
-  if (
-    typeof e.baseHourlyRate !== "number" ||
-    typeof e.overtimeHours !== "number" ||
-    typeof e.overtimeRate ||
-    typeof e.hoursWorked !== "number"
-  ) {
-    throw new Error("Invalid hourly employee data");
-  }
-  //Calculate hourly pay
-  const overtimePay = e.overtimeHours * e.overtimeRate;
-  return e.hoursWorked * e.baseHourlyRate + overtimePay;
+const calHourPay = (e: Employee<EmployeeType.HOURLY>) => {
+  const { hoursWorked, baseHourlyRate, overtimeHours, overtimeRate } =
+    e.options;
+  // Calculate hourly pay
+  const overtimePay = overtimeHours * overtimeRate;
+  return hoursWorked * baseHourlyRate + overtimePay;
 };
 
-const calSalaryPay = (e: Employee) => {
-  // Null Check
-  if (typeof e.hoursWorked !== "number") {
-    throw new Error("Invalid salaried employee data");
-  }
+const calSalaryPay = (e: Employee<EmployeeType.SALARIED>) => {
   // Calculate salary pay
   return 3000; // Assuming a fixed salary for simplicity
 };
 
-const calculatePay = (e: Employee) => {
+const calculatePay = <T extends EmployeeType>(e: Employee<T>) => {
   switch (e.type) {
-    case EmployeeType.COMMISIONED:
-      return calCommissionPay(e);
+    case EmployeeType.COMMISSIONED:
+      return calCommissionPay(e as Employee<EmployeeType.COMMISSIONED>);
     case EmployeeType.HOURLY:
-      return calHourPay(e);
+      return calHourPay(e as Employee<EmployeeType.HOURLY>);
     case EmployeeType.SALARIED:
-      return calSalaryPay(e);
+      return calSalaryPay(e as Employee<EmployeeType.SALARIED>);
     default:
       throw new InvalidEmployeeType(e.type);
   }
@@ -61,18 +43,18 @@ const calculatePay = (e: Employee) => {
 
 export const run = () => {
   const employees = [
-    new Employee("John", EmployeeType.COMMISIONED, {
+    new Employee("John", EmployeeType.COMMISSIONED, {
       baseSalary: 1000,
-      commisionRate: 0.015,
-      salesNumber: 10_000,
+      commisionRate: 0.15,
+      salesNumber: 30_000,
     }),
     new Employee("Jane", EmployeeType.HOURLY, {
       hoursWorked: 40,
-      baseHourlyRate: 1,
+      baseHourlyRate: 130,
       overtimeHours: 10,
-      overtimeRate: 1.5,
+      overtimeRate: 180,
     }),
-    new Employee("Doe", EmployeeType.SALARIED),
+    new Employee("Doe", EmployeeType.SALARIED, {}),
   ];
 
   for (const e of employees) {
@@ -80,9 +62,10 @@ export const run = () => {
       const pay = calculatePay(e);
       console.log(`${e.name} 薪水: $${pay}`);
     } catch (error) {
-      console.log(error);
       console.error(
-        `無效的員工類型: ${error.name}, ${error.message}, ${error.stack}`
+        `Error Processing employee: ${e.name}: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
       );
     }
   }

@@ -1,6 +1,6 @@
-import { run } from "./no_polymorphism";
+import { run } from "./no_polymorphism/index.js";
 
 export const runPolymorphism = () => {
-  console.log("Polymorphism");
+  console.log("no Polymorphism");
   run();
 };

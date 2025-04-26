@@ -1,1 +1,7 @@
-console.log("hello world");
+import { runPolymorphism } from "./polymorphism/index.js";
+
+const main = () => {
+  runPolymorphism();
+};
+
+main();
