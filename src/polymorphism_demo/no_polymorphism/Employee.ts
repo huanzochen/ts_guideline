@@ -6,7 +6,7 @@ export enum EmployeeType {
 
 type CommissionedOptions = {
   baseSalary: number;
-  commisionRate: number;
+  commissionRate: number;
   salesNumber: number;
 };
 

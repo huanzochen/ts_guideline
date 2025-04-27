@@ -8,10 +8,10 @@ class InvalidEmployeeType extends Error {
 }
 
 const calCommissionPay = (e: Employee<EmployeeType.COMMISSIONED>) => {
-  const { baseSalary, commisionRate, salesNumber } = e.options;
+  const { baseSalary, commissionRate, salesNumber } = e.options;
 
   // Calculate commission pay
-  const commissionPay = commisionRate * salesNumber;
+  const commissionPay = commissionRate * salesNumber;
   return baseSalary + commissionPay;
 };
 
@@ -45,7 +45,7 @@ export const run = () => {
   const employees = [
     new Employee("John", EmployeeType.COMMISSIONED, {
       baseSalary: 1000,
-      commisionRate: 0.15,
+      commissionRate: 0.15,
       salesNumber: 30_000,
     }),
     new Employee("Jane", EmployeeType.HOURLY, {
