@@ -7,8 +7,6 @@ export abstract class EmployeeBase {
 
   public abstract calculatePay(): number;
 }
-
-// Invalid EmployeeType 應該寫在 employee 還是 main 裡面?
 export class InvalidEmployeeType extends Error {
   constructor(type: string) {
     super(`Invalid employee type: ${type}`);
