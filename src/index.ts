@@ -1,4 +1,4 @@
-import { runPolymorphism } from "./polymorphism/index.js";
+import { runPolymorphism } from "./polymorphism_demo/index.js";
 
 const main = () => {
   runPolymorphism();
