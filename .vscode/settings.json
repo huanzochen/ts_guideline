@@ -3,5 +3,8 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "code-runner.executorMap": {
+    "typescript": "cd $dir && tsc $fileName && node $fileNameWithoutExt.js"
+  }
 }
