@@ -1,6 +1,6 @@
 {
-  "name": "ts-guideline2",
-  "version": "1.0.0",
+  "name": "ts-guideline",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "type": "module",
