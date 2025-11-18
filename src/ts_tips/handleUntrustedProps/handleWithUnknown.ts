@@ -22,7 +22,7 @@ function OurComponentUnknown(props: unknown) {
     const user = props as User;
 
     console.log(user.age);
-    return "Hello world";
+    return `Welcome, ${user.name}!`;
   } else return "Error Page";
 }
 
