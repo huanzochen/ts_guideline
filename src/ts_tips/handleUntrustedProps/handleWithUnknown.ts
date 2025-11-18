@@ -18,9 +18,8 @@ function OurComponentUnknown(props: unknown) {
   if (typeof props === "object" && props !== null && "name" in props) {
     // Now we knew props is a object that is not null and contains 'name'
 
-    console.log(props.name);
-
-    const user: User = props;
+    // Do some neccessary Check, and then we trust it is User
+    const user = props as User;
 
     console.log(user.age);
   } else return "Error Page";
