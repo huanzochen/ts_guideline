@@ -11,3 +11,5 @@ const order1: Order = { id: "order_456" };
 getOrderId({ order: order1 }); // Valid
 
 getOrderId({ order: user1 });
+
+export {};
