@@ -22,9 +22,16 @@ function OurComponentUnknown(props: unknown) {
     const user = props as User;
 
     console.log(user.age);
+    return "Hello world";
   } else return "Error Page";
 }
 
 console.log(OurComponentUnknown(unTrustedProp));
 
-export {};
+const invalidProp: unknown = {
+  name: "Alice",
+  // age is missing
+  address: "mars",
+};
+
+console.log(OurComponentUnknown(invalidProp));
