@@ -18,8 +18,8 @@ export function getShape(shape: Shape): ReactNode {
       return <img src="file_not_found.png" alt="File Not Found" />;
     case ShapeKind.Square:
       return <img src="option_missing.png" alt="Option Missing" />;
-    case ShapeKind.Triangle:
-      return <img src="option_missing.png" alt="Option Missing" />;
+    // case ShapeKind.Triangle:
+    //   return <img src="option_missing.png" alt="Option Missing" />;
     default:
       // Exhaustiveness check
       const _exhaustiveCheck: never = shape;
