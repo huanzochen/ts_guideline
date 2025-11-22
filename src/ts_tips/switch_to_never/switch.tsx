@@ -12,9 +12,10 @@ function getErrorImage(error: ErrorType): ReactNode {
       return <img src="file_not_found.png" alt="File Not Found" />;
     case ErrorType.OptionMissing:
       return <img src="option_missing.png" alt="Option Missing" />;
+    case ErrorType.Unauthorized:
+      return <img src="unauthorized.png" alt="Unauthorized" />;
     default:
       // Exhaustiveness check
-      // Type 'ErrorType.Unauthorized' is not assignable to type 'never'.
       const _exhaustiveCheck: never = error;
       return _exhaustiveCheck;
   }
