@@ -29,7 +29,7 @@ function OurComponentZod(props: unknown) {
     return `Welcome, ${user.name}!`;
   } else {
     // Validation failed!!
-    console.error("Validation failed:", validationResult.error.flatten());
+    console.error("Validation failed:", validationResult.error);
     return "Error Page";
   }
 }
