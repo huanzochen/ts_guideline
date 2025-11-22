@@ -16,6 +16,7 @@ function getErrorImage(error: ErrorType): ReactNode {
     //   return <img src="unauthorized.png" alt="Unauthorized" />;
     default:
       // Exhaustiveness check
+      // Type 'ErrorType.Unauthorized' is not assignable to type 'never'.
       const _exhaustiveCheck: never = error;
       return _exhaustiveCheck;
   }
