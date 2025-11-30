@@ -7,12 +7,7 @@ declare global {
   }
 }
 
-type TrendChart = {
-  kind: "trend";
-  title: "trend";
-  xVariables: string[];
-  yVariables: string[];
-};
+type TrendChart = { kind: "trend"; xVariables: string[]; yVariables: string[] };
 type BarChart = { kind: "bar"; categories: string[]; values: number[] };
 type LineChart = { kind: "line"; points: number[] };
 type ErrorState = { kind: "error"; message: string };
@@ -42,10 +37,10 @@ export function renderChart({ chartData }: { chartData: ChartData }) {
       return <BarChartRenderer categories={categories} values={values} />;
     case "line":
       const { points } = chartData;
-      return <LineRenderer points={points} />;
+      return <LineChartRenderer points={points} />;
     case "pie":
       const { radius } = chartData;
-      return <PieRenderer radius={radius} />;
+      return <PieChartRenderer radius={radius} />;
     case "error":
       const { message } = chartData;
       return <ErrorBox message={message} />;
