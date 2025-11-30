@@ -15,7 +15,7 @@ type PieChart = { kind: "pie"; radius: number };
 
 type ChartData = TrendChart | BarChart | LineChart | PieChart | ErrorState;
 
-export function safeParse(input: unknown): ChartData {
+export function safeParse({ input }: { input: unknown }): ChartData {
   // X Error: You can't access the input directly until Narrowing it's type
   // console.log(input.type);
 
