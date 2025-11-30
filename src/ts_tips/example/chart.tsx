@@ -89,7 +89,13 @@ export function TrendChartRenderer({
 
 // 3. Partial - Make everything optional
 // Use case: Patching/Updating a subset of data
-export function updateTrendChart(id: string, patch: Partial<TrendChart>) {
+export function updateTrendChart({
+  id,
+  patch,
+}: {
+  id: string;
+  patch: Partial<TrendChart>;
+}) {
   // We can pass just { title: "New Title" }
   // No need to pass the whole object
   console.log(`Updating ${id} with`, patch);
