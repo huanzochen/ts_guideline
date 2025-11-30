@@ -96,7 +96,6 @@ export function updateTrendChart({
   id: string;
   patch: Partial<TrendChart>;
 }) {
-  // We can pass just { title: "New Title" }
   // No need to pass the whole object
   console.log(`Updating ${id} with`, patch);
 }
